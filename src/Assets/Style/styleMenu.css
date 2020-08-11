@@ -1,0 +1,36 @@
+.menu {
+  text-align: center;
+}
+
+.row {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 55%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 35%;
+  flex: 1;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.menuHeaders {
+  background-color: #9ecb3a;
+  color: black;
+  margin: 0;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.items {
+  background-color: black;
+  color: white;
+}
+
+.menuItem {
+  margin: 10px;
+  font-weight: 700;
+}

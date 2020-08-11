@@ -1,5 +1,5 @@
 import React from 'react';
-import './Assets/Style/style.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // TODO:
 /*
@@ -24,13 +24,17 @@ Include the following on the site:
 */
 
 // Import Components
-import Header from './Components/Header.js';
+import Home from './Components/Home.js';
+import Menu from './Components/Menu.js';
+import Orders from './Components/Orders.js';
 
 function App() {
   return (
-    <div className='App'>
-      <Header />
-    </div>
+    <Router>
+      <Route exact path='/' component={Home}></Route>
+      <Route exact path='/menu' component={Menu}></Route>
+      <Route exact path='/orders' component={Orders}></Route>
+    </Router>
   );
 }
 

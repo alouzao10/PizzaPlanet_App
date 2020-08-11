@@ -1,0 +1,24 @@
+.header {
+  text-align: center;
+}
+
+.logo {
+  width: 55%;
+  height: 300px;
+}
+
+.navBtn {
+  margin: 5px;
+  font-size: 20px;
+  font-weight: 300;
+  background-color: #fe923c;
+  color: black;
+  border-radius: 10px;
+  padding: 3px 10px;
+}
+
+.navBtn:hover {
+  background-color: #f01731;
+  color: black;
+  cursor: pointer;
+}
