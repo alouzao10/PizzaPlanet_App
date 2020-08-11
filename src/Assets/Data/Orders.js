@@ -1,8 +1,7 @@
-import Orders from '../../Components/Orders';
-
 const orders = [
   {
-    id: 100,
+    id: 1,
+    orderID: 100,
     name: 'John Smith',
     size: 'Large',
     toppings: ['Cheese', 'Pepperoni', 'Mushroom'],
@@ -11,7 +10,8 @@ const orders = [
     dateOrdered: '6/2/2019 6:04 PM',
   },
   {
-    id: 101,
+    id: 2,
+    orderID: 101,
     name: 'Bill Allen',
     size: 'Small',
     toppings: ['Cheese'],
@@ -20,7 +20,8 @@ const orders = [
     dateOrdered: '6/4/2019 5:00 PM',
   },
   {
-    id: 101,
+    id: 3,
+    orderID: 101,
     name: 'Bill Allen',
     size: 'Large',
     toppings: ['Cheese'],
@@ -29,7 +30,8 @@ const orders = [
     dateOrdered: '6/4/2019 5:00 PM',
   },
   {
-    id: 102,
+    id: 4,
+    orderID: 102,
     name: 'Diane Jones',
     size: 'Small',
     toppings: ['Cheese', 'Extra Cheese', 'Bacon'],
@@ -38,7 +40,8 @@ const orders = [
     dateOrdered: '5/31/2019 12:46 PM',
   },
   {
-    id: 102,
+    id: 5,
+    orderID: 102,
     name: 'Diane Jones',
     size: 'Small',
     toppings: ['Cheese', 'Onions', 'Peppers'],
@@ -48,4 +51,4 @@ const orders = [
   },
 ];
 
-export default Orders;
+export default orders;

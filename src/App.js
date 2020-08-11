@@ -28,13 +28,18 @@ import Home from './Components/Home.js';
 import Menu from './Components/Menu.js';
 import Orders from './Components/Orders.js';
 
+// Import the Global Order Data
+import { OrdersProvider } from './Context/OrdersContext.js';
+
 function App() {
   return (
-    <Router>
-      <Route exact path='/' component={Home}></Route>
-      <Route exact path='/menu' component={Menu}></Route>
-      <Route exact path='/orders' component={Orders}></Route>
-    </Router>
+    <OrdersProvider>
+      <Router>
+        <Route exact path='/' component={Home}></Route>
+        <Route exact path='/menu' component={Menu}></Route>
+        <Route exact path='/orders' component={Orders}></Route>
+      </Router>
+    </OrdersProvider>
   );
 }
 

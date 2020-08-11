@@ -16,8 +16,7 @@ function Home() {
     <React.Fragment>
       <Header />
       <div className='home'>
-        <h1>Welcome to Pizza Planet!</h1>
-        <div className='row'>
+        <div className='rowHome'>
           <div className='column content'>
             <h2 className='contentHeader'>OUT OF THIS WORLD PIZZA</h2>
             <p>Place Content Here...Welcome Message, Mission Statement</p>
@@ -26,7 +25,7 @@ function Home() {
             <img src={Building} className='images' alt='building' />
           </div>
         </div>
-        <div className='row'>
+        <div className='rowHome'>
           <div className='column'>
             <img src={Ingredients} className='images' alt='building' />
           </div>
@@ -35,9 +34,9 @@ function Home() {
             <p>Place Content Here...Quality, Ingredients, Promise</p>
           </div>
         </div>
-        <div className='row'>
+        <div className='rowHome'>
           <div className='column content'>
-            <h2 className='contentHeader'>LIGHT-SPEED DELIVERY</h2>
+            <h2 className='contentHeader'>DELIVERY AT THE SPEED OF LIGHT</h2>
             <p>Place Content Here...Delivery, Procedure, Best in business</p>
           </div>
           <div className='column'>

@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.row {
+.rowMenu {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -12,7 +12,7 @@
 .column {
   display: flex;
   flex-direction: column;
-  flex-basis: 35%;
+  flex-basis: 55%;
   flex: 1;
   margin: 5px;
   border-radius: 10px;

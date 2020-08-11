@@ -1,46 +1,69 @@
-import React, { Component } from 'react';
+import React, { useState, useContext } from 'react';
 
-import Pizzas from '../Assets/Data/Pizzas.js';
-import Toppings from '../Assets/Data/Toppings.js';
+import { OrdersContext } from '../Context/OrdersContext';
 
-export class CheckOrder extends Component {
-  constructor() {
-    super();
-    this.state = { orderID: 0 };
+// Return the Order information based on the Order ID
 
-    this.setOrderID = this.setOrderID.bind(this);
-    this.checkOrder = this.checkOrder.bind(this);
-  }
+function CheckOrder() {
+  // Local variables to check for the order
+  const [orderID, setOrderID] = useState(0);
+  const [userOrder, setUserOrder] = useState([]);
 
-  setOrderID(e) {
-    this.setState({ orderID: e.target.value });
-  }
+  // Bring in the list of Orders to reference
+  const { orders } = useContext(OrdersContext);
 
-  checkOrder(e) {
+  const checkOrder = (e) => {
     e.preventDefault();
-    // Search for the order based on the given ID
-    // Display the order information underneath the section
-  }
-  render() {
-    return (
-      <div>
-        <h2>Check your order status here...</h2>
-        <form onSubmit={this.checkOrder}>
-          <label>Enter your order number: </label>
-          <input
-            type='text'
-            placeholder='####'
-            value={this.state.orderID}
-            onChange={this.setOrderID}
-          />
-          <input type='submit' value='Check Order' />
-        </form>
-        <div>
-          <h3>Your Order:</h3>
+    setUserOrder(orders.filter((order) => order.orderID === parseInt(orderID)));
+  };
+
+  const updateOrderID = (e) => {
+    setOrderID(e.target.value);
+  };
+
+  return (
+    <div>
+      <h2>Check your order status here...</h2>
+      <hr />
+      <form onSubmit={checkOrder}>
+        <input
+          type='text'
+          placeholder='####'
+          value={orderID}
+          onChange={updateOrderID}
+        />
+        <input type='submit' value='Check Order' />
+      </form>
+      {userOrder.length > 0 ? (
+        <div className='orderInfo'>
+          <h3>
+            {userOrder[0].name}, Order ID: {userOrder[0].orderID}
+          </h3>
+          {userOrder.map((order) => (
+            <div key={order.id}>
+              <p>
+                Pizza Size: {order.size} <br />
+                Added Toppings:{' '}
+                {order.toppings.map((topping) => (
+                  <span>{topping} </span>
+                ))}
+                <br />
+                Pizza Cost: ${order.pizzaCost} <br />
+              </p>
+            </div>
+          ))}
+          <h4>
+            TOTAL: ${userOrder[0].totalCost}, Ordered On:{' '}
+            {userOrder[0].dateOrdered}
+          </h4>
         </div>
-      </div>
-    );
-  }
+      ) : (
+        <div>
+          <h3>No Order Has Been Placed</h3>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default CheckOrder;

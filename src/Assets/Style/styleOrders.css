@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.orderInfo {
+  text-align: left !important;
+}
+
 .row {
   display: inline-flex;
   flex-direction: row;

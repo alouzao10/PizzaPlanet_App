@@ -5,6 +5,7 @@ import PlaceOrder from './PlaceOrder.js';
 import CheckOrder from './CheckOrder.js';
 
 import '../Assets/Style/styleOrders.css';
+
 import Pizzas from '../Assets/Data/Pizzas.js';
 import Toppings from '../Assets/Data/Toppings.js';
 

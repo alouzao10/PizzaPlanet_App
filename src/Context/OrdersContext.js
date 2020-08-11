@@ -1,17 +1,37 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useReducer } from 'react';
 
 import Orders from '../Assets/Data/Orders.js';
+import OrderReducer from './OrderReducer.js';
 
-export const OrdersContext = createContext();
+const initialState = {
+  Orders,
+};
 
-function OrdersProvider(props) {
-  const [orders, setOrders] = useState(Orders);
+export const OrdersContext = createContext(initialState);
+
+export const OrdersProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(OrderReducer, initialState);
+
+  // Actions / Global Functions
+  function cancelOrder(id) {
+    dispatch({
+      type: 'CANCEL_ORDER',
+      payload: id,
+    });
+  }
+
+  function addOrder(newOrder) {
+    dispatch({
+      type: 'ADD_ORDER',
+      payload: newOrder,
+    });
+  }
 
   return (
-    <OrdersContext.Provider value={{ orders }}>
-      {props.children}
+    <OrdersContext.Provider
+      value={{ orders: state.Orders, cancelOrder, addOrder }}
+    >
+      {children}
     </OrdersContext.Provider>
   );
-}
-
-export default OrdersProvider;
+};

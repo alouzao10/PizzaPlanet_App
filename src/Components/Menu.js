@@ -17,7 +17,7 @@ function Menu() {
 
       <div className='menu'>
         <h1>Here is our Menu</h1>
-        <div className='row'>
+        <div className='rowMenu'>
           <div className='column items'>
             <h2 className='menuHeaders'>Pizzas</h2>
             {Pizzas.map((pizza) => (
@@ -31,7 +31,7 @@ function Menu() {
             ))}
           </div>
         </div>
-        <div className='row'>
+        <div className='rowMenu'>
           <div className='column items'>
             <h2 className='menuHeaders'>Toppings</h2>
             {Toppings.map((topping) => (
