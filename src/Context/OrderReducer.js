@@ -6,10 +6,16 @@ export default (state, action) => {
         Orders: state.Orders.filter((order) => order.id !== action.payload),
       };
     case 'ADD_ORDER':
-      return {
-        ...state,
-        Orders: [action.payload, ...state.Orders],
-      };
+      console.log('Reducer Call...');
+      console.log(action.payload);
+      console.log(state.Orders);
+
+      action.payload.forEach((order) => {
+        order.dateOrdered = new Date().toLocaleString();
+        state.Orders.push(order);
+      });
+
+      return state;
     default:
       return state;
   }

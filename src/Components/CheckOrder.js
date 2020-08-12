@@ -14,6 +14,7 @@ function CheckOrder() {
 
   const checkOrder = (e) => {
     e.preventDefault();
+    console.log(orders);
     setUserOrder(orders.filter((order) => order.orderID === parseInt(orderID)));
   };
 
@@ -26,18 +27,13 @@ function CheckOrder() {
       <h2>Check your order status here...</h2>
       <hr />
       <form onSubmit={checkOrder}>
-        <input
-          type='text'
-          placeholder='####'
-          value={orderID}
-          onChange={updateOrderID}
-        />
+        <input type='text' placeholder='####' onChange={updateOrderID} />
         <input type='submit' value='Check Order' />
       </form>
       {userOrder.length > 0 ? (
         <div className='orderInfo'>
           <h3>
-            {userOrder[0].name}, Order ID: {userOrder[0].orderID}
+            {userOrder[0].name}, Order #{userOrder[0].orderID}
           </h3>
           {userOrder.map((order) => (
             <div key={order.id}>
@@ -53,7 +49,7 @@ function CheckOrder() {
             </div>
           ))}
           <h4>
-            TOTAL: ${userOrder[0].totalCost}, Ordered On:{' '}
+            TOTAL: ${userOrder[userOrder.length - 1].totalCost}, Ordered On:{' '}
             {userOrder[0].dateOrdered}
           </h4>
         </div>

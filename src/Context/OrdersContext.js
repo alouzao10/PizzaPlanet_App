@@ -21,6 +21,8 @@ export const OrdersProvider = ({ children }) => {
   }
 
   function addOrder(newOrder) {
+    console.log('Context Call...');
+    console.log(newOrder);
     dispatch({
       type: 'ADD_ORDER',
       payload: newOrder,
