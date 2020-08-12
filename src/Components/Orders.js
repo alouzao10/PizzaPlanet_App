@@ -6,8 +6,7 @@ import CheckOrder from './CheckOrder.js';
 
 import '../Assets/Style/styleOrders.css';
 
-import Pizzas from '../Assets/Data/Pizzas.js';
-import Toppings from '../Assets/Data/Toppings.js';
+import secondaryPizzaLogo from '../Assets/Images/secondaryPizzaLogo.jpg';
 
 export class Orders extends Component {
   constructor() {

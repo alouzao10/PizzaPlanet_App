@@ -6,6 +6,10 @@ import '../Assets/Style/styleMenu.css';
 import Pizzas from '../Assets/Data/Pizzas.js';
 import Toppings from '../Assets/Data/Toppings.js';
 
+import cheesePizza from '../Assets/Images/cheesePizza.jpg';
+import pepperoniPizza from '../Assets/Images/pepperoniPizza.jpg';
+import supremePizza from '../Assets/Images/supremePizza.jpg';
+
 // Pull in the data from the Pizzas and Toppings list
 // Display the data in a menu type format
 // Display Images and descriptions of some creation options
@@ -16,7 +20,11 @@ function Menu() {
       <Header />
 
       <div className='menu'>
-        <h1>Here is our Menu</h1>
+        <div className='rowMenu'>
+          <img className='pizzaImages' src={cheesePizza} />
+          <img className='pizzaImages' src={pepperoniPizza} />
+          <img className='pizzaImages' src={supremePizza} />
+        </div>
         <div className='rowMenu'>
           <div className='column menuItems'>
             <h2 className='menuHeaders'>Pizzas</h2>

@@ -18,19 +18,33 @@
   border-radius: 10px;
 }
 
+.menuHead {
+  background-color: #fbd728;
+}
+
 .menuHeaders {
   background-color: #9ecb3a;
   color: black;
   margin: 0;
   border-radius: 10px 10px 0px 0px;
+  padding: 5px;
 }
 
 .menuItems {
   background-color: #035999;
   color: white;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .menuItem {
   margin: 10px;
-  font-weight: 700;
+}
+
+.pizzaImages {
+  display: flex;
+  width: 33%;
+  height: 250px;
+  margin: auto;
+  display: inline-flex;
 }

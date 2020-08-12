@@ -53,34 +53,42 @@ function PlaceOrder() {
   };
 
   const addPizza = (e) => {
-    // !REVIEW LOGIC
+    // !REVIEW LOGIC ON EMPTY ORDER AND RESET
     // What needs to be reset/cleared to allow another pizza to be added to the order
     e.preventDefault();
     // add the Pizza to newOrder
     // As Pizzas are added to the order, display the info below the submit
     // Allow the removal of pizzas from the order
-    newOrder.push({
-      id,
-      orderID,
-      name,
-      size,
-      toppings,
-      pizzaCost,
-      toppingsCost,
-      totalCost,
-      dateOrdered: '',
-    });
-    console.log(newOrder);
-    // Reset Fields on Adding a new Pizza to the Order
-    document.getElementById('sizeSelect').selectedIndex = 0;
-    document.getElementById('orderForm').reset();
-    setOrderName(name);
-    setPizzaSize('');
-    setPizzaCost(0);
-    setToppingsCost(0);
-    setToppings([]);
-    setID(uuid());
-    //setPizzaTotal(0); // Update the total in all records of an order on the next addition
+
+    // Check fields if they are empty or incomplete
+    // Send an alert that it couldn't be added
+
+    if (name !== '' && size !== '' && toppings.length !== 0) {
+      newOrder.push({
+        id,
+        orderID,
+        name,
+        size,
+        toppings,
+        pizzaCost,
+        toppingsCost,
+        totalCost,
+        dateOrdered: '',
+      });
+      console.log(newOrder);
+      // Reset Fields on Adding a new Pizza to the Order
+      document.getElementById('sizeSelect').selectedIndex = 0;
+      document.getElementById('orderForm').reset();
+      setOrderName(name);
+      setPizzaSize('');
+      setPizzaCost(0);
+      setToppingsCost(0);
+      setToppings([]);
+      setID(uuid());
+      //setPizzaTotal(0); // Update the total in all records of an order on the next addition
+    } else {
+      alert("Your order can't be added. Please review and resubmit.");
+    }
   };
 
   const updateOrderName = (e) => {
@@ -90,8 +98,6 @@ function PlaceOrder() {
   // Capture the object values of the selection...
   // Review logic when adding/removing toppings and sizes
   const updatePizza = (e) => {
-    console.log(e.target.value);
-
     const size = e.target.value;
     var cost = 0;
     // Determine Pizza Cost based on size
@@ -102,8 +108,7 @@ function PlaceOrder() {
         setPizzaCost(cost);
       }
     });
-    // !REVIEW LOGIC
-    // If selected add to the Pizza Total and Subtract from previous cost
+    // If selected add to the Pizza Total and Subtract previous selection from total cost
     if (totalCost > 0) {
       const updatedTotal = totalCost - pizzaCost;
       setTotalCost(updatedTotal + cost);
@@ -112,9 +117,8 @@ function PlaceOrder() {
     }
   };
 
+  // !REVIEW CHECKING LOGIC ON RESET
   const updateToppings = (e) => {
-    console.log(e.target.value);
-    console.log(e.target.checked);
     // Get the price of the selected Topping
     const pizzaTopping = e.target.value;
     var cost = 0;
@@ -123,7 +127,6 @@ function PlaceOrder() {
         cost = topping.cost;
       }
     });
-    // !REVIEW LOGIC
     const checkedTopping = e.target.checked;
     if (checkedTopping) {
       // Add Topping
@@ -141,19 +144,18 @@ function PlaceOrder() {
         setTotalCost(totalCost - cost);
       }
     }
-    // USE setToppings AND setToppingsCost
   };
 
   return (
-    <div>
-      <h2>Place your order here...</h2>
-      <hr />
+    <div className=''>
+      <h2 className='sectionHeader'>Place your order here...</h2>
       <div className='orderInfo'>
         <form id='orderForm' onSubmit={addPizza}>
-          <h4>Order #{orderID}</h4>
-          <label>Enter your name: </label>
+          <h2 className='orderNumber'>Order #{orderID}</h2>
+          <label className='sectionLabels'>Name: </label>
           <br />
           <input
+            className='nameField'
             required
             type='text'
             placeholder='Jon/Jane Doe'
@@ -161,9 +163,13 @@ function PlaceOrder() {
             onChange={updateOrderName}
           />
           <br />
-          <label>Pizza Size: </label>
+          <label className='sectionLabels'>Pizza Size: </label>
           <br />
-          <select id='sizeSelect' onChange={updatePizza}>
+          <select
+            id='sizeSelect'
+            className='selectField'
+            onChange={updatePizza}
+          >
             <option></option>
             {Pizzas.map((pizza) => (
               <option value={pizza.size}>
@@ -172,32 +178,49 @@ function PlaceOrder() {
             ))}
           </select>
           <br />
-          <label>Toppings: </label>
+          <label className='sectionLabels'>Toppings: </label>
           {Toppings.map((topping) => (
             <Fragment>
               <br />
-              <label>
+              <span className='toppingSelect'>
                 <input
-                  className='toppingSelect'
+                  className='toppingItem'
                   type='checkbox'
                   value={topping.topping}
                   onChange={updateToppings}
                 />
                 {topping.topping} ***************** ${topping.cost.toFixed(2)}
-              </label>
+              </span>
             </Fragment>
           ))}
           <br />
-          <h4>TOTAL: ${totalCost.toFixed(2)}</h4>
-          <input type='submit' value='Add Pizza To Order' />
-          <button onClick={resetFields}>Cancel Order</button>
+          <h4 className='total'>TOTAL: ${totalCost.toFixed(2)}</h4>
+          <input
+            className='submitBtn'
+            type='submit'
+            value='Add Pizza To Order'
+          />
+
+          {newOrder.length > 0 ? (
+            <span>
+              <button className='cancelBtn' onClick={resetFields}>
+                Cancel Order
+              </button>{' '}
+              |{' '}
+              <button className='submitBtn' onClick={submitOrder}>
+                Submit Order
+              </button>
+            </span>
+          ) : (
+            <div></div>
+          )}
         </form>
         <hr />
         {newOrder.length > 0 ? (
           <div>
             {newOrder.map((order) => (
               <div key={order.id}>
-                <p>
+                <p className='order'>
                   Pizza Size: {order.size} <br />
                   Added Toppings:{' '}
                   {order.toppings.map((topping) => (
@@ -217,7 +240,6 @@ function PlaceOrder() {
         )}
 
         <hr />
-        <button onClick={submitOrder}>Submit Order</button>
       </div>
     </div>
   );

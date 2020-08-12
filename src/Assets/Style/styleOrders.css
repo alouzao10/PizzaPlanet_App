@@ -2,38 +2,151 @@
   text-align: center;
 }
 
-.orderInfo {
-  text-align: left !important;
-}
-
 .row {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 55%;
+  width: 65%;
 }
 
 .column {
   display: flex;
   flex-direction: column;
-  flex-basis: 35%;
+  flex-basis: 65%;
   flex: 1;
   margin: 5px;
   border-radius: 10px;
 }
 
-.menuHeaders {
+.placeOrder {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.sectionHeader {
   background-color: #9ecb3a;
   color: black;
   margin: 0;
   border-radius: 10px 10px 0px 0px;
+  padding: 5px;
 }
 
-.items {
-  background-color: black;
+.orderInfo {
+  text-align: left !important;
+  background-color: #035999;
   color: white;
+  padding: 5px 15px;
+  border-radius: 0px 0px 10px 10px;
 }
 
-.menuItem {
-  margin: 10px;
+.nameField,
+.selectField,
+.orderIDField {
+  font-size: 15px;
+  width: 50%;
+  padding: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.sectionLabels {
+  color: black;
+  background-color: white;
+  margin-bottom: 15px;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.toppingSelect {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.toppingItem {
+  margin-top: 15px;
+}
+
+.total {
+  width: 25%;
+  color: black;
+  background-color: #fbd728;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.orderNumber {
+  text-align: center !important;
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.cancelBtn {
+  color: white;
+  background-color: red;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 10px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.cancelBtn:hover {
+  cursor: pointer;
+  color: red;
+  background-color: black;
+}
+
+.submitBtn {
+  color: white;
+  background-color: #789b2d;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.submitBtn:hover {
+  cursor: pointer;
+  color: #035999;
+  background-color: #9ecb3a;
+}
+
+.order {
+  background-color: #fe923c;
+  color: black;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: 700;
+}
+
+.checkOrder {
+  background-color: #035999;
+  color: white;
+  padding: 5px 15px;
+}
+
+.noOrder {
+  padding: 5px;
+  background-color: red;
+  border-radius: 5px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.guardImage {
+  height: 450px;
+  width: 350px;
+}
+
+.totalOrder {
+  color: black;
+  background-color: #fbd728;
+  border-radius: 5px;
+  padding: 5px;
 }

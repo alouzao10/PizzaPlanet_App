@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../Assets/Style/styleHeader.css';
 
 // Import any Images
-import pizzaLogo from '../Assets/Images/pizzaPlanetLogo.jpg';
+import pizzaLogo from '../Assets/Images/pizzaLogo.jpg';
 
 function Header() {
   return (

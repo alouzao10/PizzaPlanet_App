@@ -3,14 +3,14 @@
 }
 
 .logo {
-  width: 75%;
-  height: 400px;
+  width: 45%;
+  height: 25%;
 }
 
 .navBtn {
   margin: 5px;
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 700;
   background-color: #fe923c;
   color: black;
   border-radius: 10px;
