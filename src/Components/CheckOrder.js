@@ -50,19 +50,19 @@ function CheckOrder() {
                   <span>{topping} </span>
                 ))}
                 <br />
-                Pizza Cost: ${order.pizzaCost} <br />
+                Pizza Cost: ${order.pizzaCost.toFixed(2)} <br />
               </p>
             ))}
           </div>
           <h4 className='totalOrder'>
-            TOTAL: ${userOrder[userOrder.length - 1].totalCost}, Ordered On:{' '}
-            {userOrder[0].dateOrdered}
+            TOTAL: ${userOrder[userOrder.length - 1].totalCost.toFixed(2)},
+            Ordered On: {userOrder[0].dateOrdered}
           </h4>
         </div>
       ) : (
         <div className='noOrder'>
           <h1>No Order Has Been Placed</h1>
-          <img className='guardImage' src={PizzaGuard} />
+          <img className='guardImage' src={PizzaGuard} alt='PizzaGuard' />
         </div>
       )}
     </div>

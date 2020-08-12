@@ -40,7 +40,10 @@ function PlaceOrder() {
   const resetFields = () => {
     // Reset fields for resubmission
     document.getElementById('sizeSelect').selectedIndex = 0;
-    document.getElementById('orderForm').reset();
+    //document.getElementById('orderForm').reset();
+    Toppings.forEach((topping) => {
+      document.getElementById(topping.topping).checked = false;
+    });
     setOrderName('');
     setPizzaSize('');
     setPizzaCost(0);
@@ -78,7 +81,9 @@ function PlaceOrder() {
       console.log(newOrder);
       // Reset Fields on Adding a new Pizza to the Order
       document.getElementById('sizeSelect').selectedIndex = 0;
-      document.getElementById('orderForm').reset();
+      Toppings.forEach((topping) => {
+        document.getElementById(topping.topping).checked = false;
+      });
       setOrderName(name);
       setPizzaSize('');
       setPizzaCost(0);
@@ -87,7 +92,7 @@ function PlaceOrder() {
       setID(uuid());
       //setPizzaTotal(0); // Update the total in all records of an order on the next addition
     } else {
-      alert("Your order can't be added. Please review and resubmit.");
+      alert("Your order can't be processed. Please review and resubmit.");
     }
   };
 
@@ -187,6 +192,7 @@ function PlaceOrder() {
                   className='toppingItem'
                   type='checkbox'
                   value={topping.topping}
+                  id={topping.topping}
                   onChange={updateToppings}
                 />
                 {topping.topping} ***************** ${topping.cost.toFixed(2)}

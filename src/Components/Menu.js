@@ -21,9 +21,13 @@ function Menu() {
 
       <div className='menu'>
         <div className='rowMenu'>
-          <img className='pizzaImages' src={cheesePizza} />
-          <img className='pizzaImages' src={pepperoniPizza} />
-          <img className='pizzaImages' src={supremePizza} />
+          <img className='pizzaImages' src={cheesePizza} alt='cheesePizza' />
+          <img
+            className='pizzaImages'
+            src={pepperoniPizza}
+            alt='pepperoniPizza'
+          />
+          <img className='pizzaImages' src={supremePizza} alt='supremePizza' />
         </div>
         <div className='rowMenu'>
           <div className='column menuItems'>
