@@ -1,3 +1,5 @@
+/* Styling for the Order page of the site */
+
 .orders {
   text-align: center;
 }
@@ -99,6 +101,21 @@
 }
 
 .cancelBtn:hover {
+  cursor: pointer;
+  color: red;
+  background-color: black;
+}
+
+.removeBtn {
+  color: white;
+  background-color: red;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.removeBtn:hover {
   cursor: pointer;
   color: red;
   background-color: black;

@@ -1,22 +1,33 @@
+// Import React Elements
 import React, { useState, useContext, Fragment } from 'react';
 import { v4 as uuid } from 'uuid';
 
+// Import the Global Data used to keep track of and add to the list of Orders
 import { OrdersContext } from '../Context/OrdersContext';
 
+// Import External Data Sets
 import Pizzas from '../Assets/Data/Pizzas.js';
 import Toppings from '../Assets/Data/Toppings.js';
 
-// Add pizzas to a local state and set an Add button to add to the list
-// Keep track of individual pizza base price and the final cost...abs
-// Cost of pizza + cost of ingredients = total
-
-// Final order button that will add the order to the main Orders list
-
+// Presents a form where users can add pizzas to an order
+// Users will be able to add as many pizzas with the toppings available to their order
+// They can choose to cancel their order and start fresh in a new order form
+// Adding pizzas will be tracked before the order is fully submitted
+// Pricing information will be tracked to update the total cost as pizzas are added or being worked on
 function PlaceOrder() {
-  // Bring in the list of Orders to reference
+  // Bring in the global list of Orders and global function to add orders to reference
   const { orders, addOrder } = useContext(OrdersContext);
 
-  // Local variables to check for the order
+  // Local variables used to build new orders and submit a new order
+  // id = identifier for the order item record as it's added to order
+  // orderID = identifier to determine the order number for the order items
+  // name = the name the user provides for their order
+  // size = the size of the pizza
+  // pizzaCost = the cost of the pizza based on its size, used to calculate the total cost
+  // toppings = the list of toppings that get added to a pizza
+  // toppingsCost = the cost of the toppings when added to a pizza, used to calculate total cost
+  // totalCost = the total cost of the order based on the number of pizzas and toppings added
+  // newOrder = the order that will be added to the global Order list upon submission
   const [id, setID] = useState(uuid());
   const [orderID, setOrderID] = useState(orders[orders.length - 1].orderID + 1);
   const [name, setOrderName] = useState('');
@@ -25,22 +36,24 @@ function PlaceOrder() {
   const [toppings, setToppings] = useState([]);
   const [toppingsCost, setToppingsCost] = useState(0.0);
   const [totalCost, setTotalCost] = useState(0);
-
   const [newOrder, setNewOrder] = useState([]);
 
+  // Upon clicking the Submit Order button, the order will added to the list of existing Orders
+  // The global function from Context will push the new order to the existing Order list
+  // An alert is returned confirming the addition of the order
   const submitOrder = (e) => {
-    // Submit the full order and add to list of Orders
-    // Check if an order exists and alert the user
-    // Use UUID to assign an ID and OrderID
     e.preventDefault();
     addOrder(newOrder);
     resetFields();
+    alert(`Your Order has been processed: Order #${newOrder[0].orderID}`);
   };
 
+  // This will reset the fields in the order form when an order is submitted or a pizza is added
+  // THis is to allow a follow up or new submission of a pizza
+  // Values are returned to their initial state or updated to reflect the next order or pizza entry
   const resetFields = () => {
     // Reset fields for resubmission
     document.getElementById('sizeSelect').selectedIndex = 0;
-    //document.getElementById('orderForm').reset();
     Toppings.forEach((topping) => {
       document.getElementById(topping.topping).checked = false;
     });
@@ -55,16 +68,15 @@ function PlaceOrder() {
     setOrderID(orderID + 1);
   };
 
+  // This will be called as pizzas are added to an order
+  // Pizzas will be kept track of in the order before they are fully submitted as a full order
+  // It will check to make sure some of the values have been added before adding a pizza to the order
+  // Makes sure a name, pizza size, and at least one topping have been provided by the user before it gets added
+  // An alert will be triggered if fields are left incomplete or left empty
+  // The added pizza will be presented below with the information that was entered for that pizza
+  // Fields in the form will be reset to indicate the continuation of adding more pizzas to the order
   const addPizza = (e) => {
-    // !REVIEW LOGIC ON EMPTY ORDER AND RESET
-    // What needs to be reset/cleared to allow another pizza to be added to the order
     e.preventDefault();
-    // add the Pizza to newOrder
-    // As Pizzas are added to the order, display the info below the submit
-    // Allow the removal of pizzas from the order
-
-    // Check fields if they are empty or incomplete
-    // Send an alert that it couldn't be added
 
     if (name !== '' && size !== '' && toppings.length !== 0) {
       newOrder.push({
@@ -90,18 +102,20 @@ function PlaceOrder() {
       setToppingsCost(0);
       setToppings([]);
       setID(uuid());
-      //setPizzaTotal(0); // Update the total in all records of an order on the next addition
     } else {
       alert("Your order can't be processed. Please review and resubmit.");
     }
   };
 
+  // Updates the name field based on the text entered in the form field
   const updateOrderName = (e) => {
     setOrderName(e.target.value);
   };
 
-  // Capture the object values of the selection...
-  // Review logic when adding/removing toppings and sizes
+  // Captures the size of the pizza that was selected
+  // To identify the price, it checks against the Pizzas data set and returns the correct price
+  // It will then calculate and update the total cost of the pizza
+  // It determines if any toppings were added or if a previous pizza was added to adjust the total accordingly
   const updatePizza = (e) => {
     const size = e.target.value;
     var cost = 0;
@@ -122,7 +136,10 @@ function PlaceOrder() {
     }
   };
 
-  // !REVIEW CHECKING LOGIC ON RESET
+  // Captures which toppings were selected to the order and adds it to the pizza
+  // To identify the price, it checks against the Toppings data set and returns the correct price
+  // It will then calculate and update the total cost of the pizza
+  // It determines if any toppings were added or removed to adjust the total cost accordingly
   const updateToppings = (e) => {
     // Get the price of the selected Topping
     const pizzaTopping = e.target.value;

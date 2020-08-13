@@ -1,3 +1,5 @@
+/* Styling for the Home page of the site */
+
 .home {
   text-align: center;
 }
@@ -41,4 +43,5 @@
 .contentTxt {
   font-size: 20px;
   padding: 20px;
+  text-align: left;
 }
