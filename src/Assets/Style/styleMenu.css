@@ -44,9 +44,7 @@
 }
 
 .pizzaImages {
-  display: flex;
   width: 33%;
-  height: 250px;
-  margin: auto;
+  min-height: 100%;
   display: inline-flex;
 }

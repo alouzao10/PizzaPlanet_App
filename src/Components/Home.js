@@ -28,6 +28,9 @@ function Home() {
             dining rooms, and top of the line service. We have live
             entertainment nightly with special guests from astronauts and famous
             extraterrestrials.
+            <br />
+            <br />
+            We hope to see you soon!!!
           </p>
         </div>
         <div className='column'>
@@ -72,7 +75,6 @@ function Home() {
         </div>
       </div>
       <div>
-        <h1>We hope to see you soon...</h1>
         <img src={Aliens} className='aliensImg' alt='aliens' />
       </div>
     </div>
